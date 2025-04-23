@@ -1,0 +1,23 @@
+
+# Entornos virtuales
+venv/
+.env
+
+# Archivos de base de datos
+*.sqlite3
+
+# Archivos de configuración de usuario
+*.pyc
+__pycache__/
+*.log
+
+# Archivos grandes (como el wallet)
+oracle_wallet/
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+
+# Archivos mayores a 100 MB no se subirán aunque no estén aquí (Git lo bloquea)
+
