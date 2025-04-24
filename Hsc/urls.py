@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Inicio.urls')),
     path('api/', include('api_hsc.urls')),
+    
 ]
 
