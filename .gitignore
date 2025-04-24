@@ -21,3 +21,4 @@ oracle_wallet/
 
 # Archivos mayores a 100 MB no se subirán aunque no estén aquí (Git lo bloquea)
 
+wallet/lib/libociei.dylib
