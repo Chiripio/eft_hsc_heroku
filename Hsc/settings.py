@@ -77,9 +77,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Hsc.wsgi.application'
 
-REST_FRAMEWORK={
-    'DEFAULT_AUTHENTICATION_CLASSES':[
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',  # ← esta línea habilita el login web
     ]
 }
 
