@@ -40,7 +40,7 @@ class Venta (models.Model):
     fechaVenta = models.DateField(verbose_name="Id de venta",null=False, blank=False)
     usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
     def __str__(self):
-        return self.fechaVenta    
+        return str(self.fechaVenta)  # ✅ esto está bien   
 
 class Categoria (models.Model):
     idCategoria = models.AutoField(primary_key=True,verbose_name="ID de la categoria")

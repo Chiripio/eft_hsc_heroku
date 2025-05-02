@@ -1,0 +1,85 @@
+{% extends 'Inicio/plantMain.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+    body {
+        background-color: rgb(40, 3, 126);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: background-image 0.5s ease-in-out;
+        font-family: 'Quicksand','Open Sans', 'Helvetica Neue';
+        text-align: center;
+    }
+
+    .clima-container {
+        margin-top: 50px;
+        color: white;
+        padding: 50px 20px;
+    }
+
+    .clima-container h1 {
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+
+    .clima-container p {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .icono-clima {
+        font-size: 100px;
+        animation: flotar 2.5s ease-in-out infinite;
+        margin-bottom: 30px;
+    }
+
+    @keyframes flotar {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0px); }
+    }
+
+    /* Para mantener el mismo estilo del badge del clima si se usa */
+    .text-end a.text-decoration-none {
+        display: inline-block;
+        width: auto;
+        cursor: pointer;
+        position: relative;
+        z-index: 10;
+    }
+</style>
+{% endblock %}
+
+{% block contenido %}
+<section class="clima-container">
+    {% if clima %}
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                let desc = "{{ clima.descripcion|lower }}";
+                let fondo = "";
+
+                if (desc.includes("nube")) fondo = "/static/Inicio/img/clima/nublado.jpg";
+                else if (desc.includes("lluvia")) fondo = "/static/Inicio/img/clima/lluvia.jpg";
+                else if (desc.includes("tormenta")) fondo = "/static/Inicio/img/clima/tormenta.jpg";
+                else if (desc.includes("nieve")) fondo = "/static/Inicio/img/clima/nieve.jpg";
+                else if (desc.includes("sol") || desc.includes("despejado")) fondo = "/static/Inicio/img/clima/soleado.jpg";
+
+                if (fondo !== "") {
+                    document.body.style.backgroundImage = `url('${fondo}')`;
+                }
+            });
+        </script>
+
+        <div>
+            <div class="icono-clima">🌤️</div>
+            <h1>Clima actual en {{ clima.ciudad }}</h1>
+            <p>🌡️ {{ clima.temperatura }}°C</p>
+            <p>📝 {{ clima.descripcion|title }}</p>
+        </div>
+    {% else %}
+        <p>No se pudo obtener el clima actual.</p>
+    {% endif %}
+</section>
+{% endblock %}

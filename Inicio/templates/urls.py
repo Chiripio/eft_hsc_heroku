@@ -1,0 +1,1 @@
+path('clima/', ver_clima, name='ver_clima'),

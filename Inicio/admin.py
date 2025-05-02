@@ -1,4 +1,5 @@
 from django.contrib import admin
+from .models import Usuario
 
 from .models import TipoUsuario,Usuario,Venta,Categoria,TipoProd,Marca,Modelo,Producto,Region,Comuna,Direccion,Detalle
 # Register your models here.

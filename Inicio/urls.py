@@ -2,9 +2,18 @@ from django.urls import path
 from .views import iniciar,iniciar_sesion, inicio, inicioadmin, registrar_m, registrarse, newProd,addprod,vistamod,eliminarProducto,menuadmin,micadmin,tecladoadmin,mouseAdmin,ramAdmin,graficaAdmin,procesadorAdmin,mostrarTeclado,teclado,mostrarMic,micro,mostrarMouse,mouse,mostrarGrafica,grafica,mostrarRam,ram,mostrarProcesador,procesador,carrito,perfilusuario,edicionProducto,editarProducto, mostrarperfil, modificarPerfil ,agregar_producto,eliminar_producto,restar_producto,limpiar_producto
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views_api
+from django.shortcuts import render
+from django.urls import path
+from django.contrib.auth.decorators import login_required
+from .views import clima_actual
+from .views import ver_clima
+
 
 
 urlpatterns = [
+    
+    path('clima/', ver_clima, name='ver_clima'),
 
     #Pagina iniciar/ Solo carga pagina
     path('iniciar/',iniciar,name="iniciar"),
@@ -75,5 +84,12 @@ urlpatterns = [
 
     path('edicionProducto/<idProducto>', edicionProducto, name="edicionProducto"),
     path('editarProducto/<idProducto>', editarProducto, name="editarProducto"),
+    path('api/productos/', views_api.listar_productos, name='api_productos'),
+    path('api/ventas/<str:username>/', views_api.ventas_por_usuario, name='api_ventas_usuario'),
+
+    #ventas_api
+    path('ventas-api/', login_required(views_api.ventas_api_html), name="ventas_api"),
+    path('api/clima/', clima_actual, name="api_clima"),
+    path('clima/', ver_clima, name='ver_clima'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

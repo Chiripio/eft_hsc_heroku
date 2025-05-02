@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ventas del Usuario</title>
+</head>
+<body>
+    <h1>Ventas del usuario admin</h1>
+    <ul id="lista-ventas"></ul>
+
+    <script>
+        const token = "58f0a2353feadf597ced18d269562f3c8688af38"; // tu token
+        const url = "http://127.0.0.1:8000/api/ventas/admin/";
+
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Token ' + token,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("No autorizado o error al conectar con la API");
+            }
+            return response.json();
+        })
+        .then(data => {
+            const lista = document.getElementById("lista-ventas");
+            data.forEach(venta => {
+                const item = document.createElement("li");
+                item.textContent = `ID: ${venta.idVenta} | Fecha: ${venta.fechaVenta}`;
+                lista.appendChild(item);
+            });
+        })
+        .catch(error => {
+            document.body.innerHTML = "<p>Error: " + error.message + "</p>";
+        });
+    </script>
+</body>
+</html>

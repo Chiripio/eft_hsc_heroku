@@ -22,3 +22,10 @@ oracle_wallet/
 # Archivos mayores a 100 MB no se subirán aunque no estén aquí (Git lo bloquea)
 
 wallet/lib/libociei.dylib
+venv/
+__pycache__/
+*.sqlite3
+*.pyc
+.DS_Store
+wallet/
+*.log

@@ -2,11 +2,34 @@ from django.shortcuts import render,redirect
 from .models import Usuario,Direccion,Comuna,Region,TipoUsuario, Producto, Marca,Categoria,TipoProd,Marca
 from django.contrib import messages
 from .Carrito import Carrito
+import requests
+from django.http import JsonResponse
+
+
 
 # Create your views here.
 def inicio(request):
+    ciudad = "Santiago"
+    api_key = "3aa40bf58c891102b7f62742923f8b68"
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={ciudad}&appid={api_key}&lang=es&units=metric"
 
-    return render(request,'Inicio/index.html')
+    clima = None
+    try:
+        respuesta = requests.get(url, timeout=5)
+        datos = respuesta.json()
+        clima = {
+            'ciudad': ciudad,
+            'temperatura': datos['main']['temp'],
+            'descripcion': datos['weather'][0]['description'],
+            'icono': datos['weather'][0]['icon']
+        }
+    except:
+        clima = None
+
+    return render(request, 'Inicio/index.html', {'clima': clima})
+
+
+
 def inicioadmin(request):
 
     return render(request,'Inicio/index_admin.html') 
@@ -227,21 +250,25 @@ def registrar_m (request):
 
         
 def iniciar_sesion(request):
-    usuario1 = request.POST['usuario']
-    contra1 = request.POST['contra']
-    try:
-        usuario2 = Usuario.objects.get(username = usuario1,contrasennia = contra1)
-        
-        if(usuario2.tipousuario.idTipoUsuario == 1):
-            return redirect ('menu_admin')
-        else:    
-            contexto = {"usuario":usuario2}
-            
-            return render(request, 'Inicio/index.html', contexto)            
-
-    except:
-        messages.error(request,'El usuario o la contraseña son incorrectos')
-        return redirect ('iniciar')
+    if request.method == 'POST':
+        usuario1 = request.POST.get('usuario')
+        contra1 = request.POST.get('contra')
+        if usuario1 and contra1:
+            try:
+                usuario2 = Usuario.objects.get(username=usuario1, contrasennia=contra1)
+                if usuario2.tipousuario.idTipoUsuario == 1:
+                    return redirect('menu_admin')
+                else:
+                    contexto = {"usuario": usuario2}
+                    return inicio(request, usuario2)
+            except Usuario.DoesNotExist:
+                messages.error(request, 'El usuario o la contraseña son incorrectos')
+                return redirect('iniciar')
+        else:
+            messages.error(request, 'Debe ingresar usuario y contraseña')
+            return redirect('iniciar')
+    else:
+        return redirect('iniciar')
     
  
 
@@ -345,4 +372,58 @@ def limpiar_producto(request,usuario):
 
 
 
+
+def clima_actual(request):
+    ciudad = "Santiago"
+    api_key = "3aa40bf58c891102b7f62742923f8b68"
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={ciudad}&appid={api_key}&lang=es&units=metric"
+
+    try:
+        respuesta = requests.get(url)
+        datos = respuesta.json()
+
+        clima = {
+            'city': ciudad,
+            'country': datos['sys']['country'],
+            'temperature': datos['main']['temp'],
+            'weather': datos['weather'][0]['description']
+        }
+        return JsonResponse(clima)
+    except Exception as e:
+        return JsonResponse({'error': 'No se pudo obtener el clima', 'detalle': str(e)}, status=500)
+
+
+
+
+# Versión corregida y funcional de ver_clima
+def ver_clima(request):
+    try:
+        # Obtener IP del visitante
+        ip = request.META.get('REMOTE_ADDR', '')
+        if ip == '127.0.0.1' or ip.startswith('192.168') or ip == '':
+            ip = requests.get("https://api64.ipify.org").text
+
+        # Obtener ciudad por IP
+        location_url = f'https://ipapi.co/{ip}/json/'
+        location_response = requests.get(location_url, timeout=5).json()
+        ciudad = location_response.get('city', 'Santiago')
+
+        # Obtener clima desde OpenWeather
+        api_key = '3aa40bf58c891102b7f62742923f8b68'
+        clima_url = f'https://api.openweathermap.org/data/2.5/weather?q={ciudad}&appid={api_key}&units=metric&lang=es'
+        clima_response = requests.get(clima_url, timeout=5).json()
+
+        descripcion = clima_response['weather'][0]['description']
+        temperatura = clima_response['main']['temp']
+
+        clima = {
+            'ciudad': ciudad,
+            'descripcion': descripcion,
+            'temperatura': round(temperatura)
+        }
+
+        return render(request, 'Inicio/clima.html', {'clima': clima})
+
+    except Exception as e:
+        return render(request, 'Inicio/clima.html', {'error': str(e)})
 
