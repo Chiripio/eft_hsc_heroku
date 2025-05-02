@@ -1,116 +1,79 @@
-# 🖥️ HSC - Semana 7: API REST + Servicio Web + Token Auth
+# HSC - Proyecto Semana 8 (PGY3221 - Programación Web)
 
-Repositorio oficial del proyecto correspondiente a la Semana 7 de Programación Web, cuyo objetivo es compartir información mediante una API REST y consumir un servicio web externo, utilizando Django REST Framework.
+Este es el proyecto final correspondiente a la **Semana 8** del ramo **Programación Web** del estudiante **Eduardo Guerrero Soto**.
 
-## ✅ Funcionalidades desarrolladas
+## 📌 Descripción
 
-### 1. API REST protegida por token
-- Endpoint: `/api/categorias/`
-- Método: `GET`, `POST`, `PUT`, `DELETE` (según permisos)
-- Requiere autenticación por token.
+El sitio web HSC permite a usuarios navegar productos tecnológicos (mouse, teclados, RAM, GPU, etc.), agregar al carrito, ver perfil, y como novedad de esta semana:
 
-### 2. Autenticación por Token
-- Endpoint para generar token: `/api/token/`
-- Método: `POST`
-- Formato:
-  ```json
-  {
-    "username": "admin",
-    "password": "admin123"
-  }
+- Se ha implementado una **API REST protegida con token**.
+- Se consume un **servicio web externo (OpenWeatherMap)** para mostrar el clima en tiempo real.
+- El frontend está completamente funcional, conectado a Oracle y animado con estilos personalizados.
 
+## 🛠️ Instalación y uso
+
+1. Clonar el repositorio:
+
+```bash
+git clone https://github.com/Chiripio/Hsc_Semana8.git
+cd Hsc_Semana8
 
 
 
-3. Servicio Web Externo
-	•	Consumo de noticias desde Hacker News con query=technology.
-	•	URL: /api/noticias/
-	•	Formato amigable en noticias.html, integrando diseño coherente con el resto del sitio.
+	2.	Crear entorno virtual y activar:
+
+python3 -m venv venv
+source venv/bin/activate
+
+	3.	Instalar dependencias:
+
+pip install -r requirements.txt
 
 
-Prueba de autenticación protegida
+	4.	Configurar la conexión a Oracle (usando wallet).
+	5.	Correr el servidor:
+
+python manage.py runserver
 
 
-# Obtener token
+ Acceso al panel de administración
+	•	Usuario: admin
+	•	Contraseña: DUoc2025
 
-curl -X POST http://127.0.0.1:8000/api/token/ \
--H "Content-Type: application/json" \
--d '{"username": "admin", "password": "admin123"}'
+Entrar en http://127.0.0.1:8000/admin
 
-# Usar token para consultar datos
-curl -H "Authorization: Token TU_TOKEN_AQUI" http://127.0.0.1:8000/api/categorias/
+🧩 API REST (Django REST Framework)
 
+Endpoints disponibles:
+	•	GET /api/productos/ → Lista de productos
+	•	GET /api/ventas/<usuario>/ → Ventas por usuario
+	•	GET /api/clima/ → Clima en tiempo real por IP (OpenWeather)
 
-Tecnologías utilizadas
-	•	Python 3 + Django
-	•	Django REST Framework
-	•	Oracle Database (via oracledb)
-	•	Bootstrap para diseño visual
-	•	GitHub + Terminal para colaboración
-
-# 🖥️ HSC - Proyecto Semana 8 PGY3221
-
-Este proyecto corresponde al desarrollo de la Semana 8 del curso **Programación Web (PGY3221)** de Duoc UC.
-
-## ✅ Objetivos cumplidos
-
-- ✔️ API REST con Django Rest Framework
-- ✔️ Conexión a base de datos Oracle
-- ✔️ Autenticación por Token
-- ✔️ Consumo de servicio web externo (clima) con visualización en el frontend
-- ✔️ Integración completa con Django (modelos, views, templates, URLs)
-- ✔️ Subida a GitHub en repositorio exclusivo
-
-## 🌐 Endpoints importantes
-
-- `http://127.0.0.1:8000/api/productos/` → Protegido por Token
-- `http://127.0.0.1:8000/api/ventas/<usuario>/` → Protegido por Token
-- `http://127.0.0.1:8000/api/clima/` → Servicio de clima (API)
-- `http://127.0.0.1:8000/clima/` → Vista visual del clima con animación
-
-## 🔒 Autenticación por Token
-
-Para acceder a los endpoints protegidos, se debe incluir el header:
-
-Puedes obtener el token desde el Django admin o utilizando la API de login.
-
-## 🧪 Pruebas realizadas
-
-- Pruebas de endpoints en Postman
-- Verificación visual de interfaz de clima
-- Login, carrito, y consumo de datos desde Oracle
-
-## 📁 Estructura relevante
-
-Hsc/
-├── Inicio/
-│   ├── views.py
-│   ├── views_api.py
-│   ├── serializers.py
-│   ├── templates/
-│   │   └── Inicio/
-│   │       ├── index.html
-│   │       ├── clima.html
-│   │       └── ventas_api.html
-│   ├── static/
-│   │   └── Inicio/img/clima/
-│   │       ├── soleado.jpg
-│   │       ├── lluvia.jpg
-│   │       ├── nublado.jpg
-│   │       └── tormenta.jpg
-├── manage.py
-├── db.sqlite3 (ignorado)
-├── wallet/ (ignorado)
-└── README.md
+Token de autenticación
+	•	Token generado por usuario registrado (ver en admin).
+	•	Agregar a Postman como Header:
 
 
-## 👨‍💻 Autor
+Authorization: Token <tu_token>
 
-Eduardo Guerrero Soto - Duoc UC  
-Curso: PGY3221 – Programación Web  
-Semana: 8
 
----
+GET http://127.0.0.1:8000/api/productos/
+Authorization: Token TU_TOKEN
 
-> Repositorio oficial: [github.com/Chiripio/Hsc_Semana8](https://github.com/Chiripio/Hsc_Semana8)
+
+
+Clima animado
+
+El clima se muestra dinámicamente en:
+	•	Parte superior derecha del index.html
+	•	Página /clima/ con animaciones y fondo que cambia según el tiempo actual detectado por IP.
+
+🧪 Revisión completa
+
+✔️ Conexión Oracle funcionando
+✔️ API protegida por Token
+✔️ Consumo de API externa (OpenWeather)
+✔️ Vistas enlazadas desde el frontend
+✔️ Proyecto completo subido a GitHub
+
 
