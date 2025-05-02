@@ -48,23 +48,69 @@ Tecnologías utilizadas
 	•	Bootstrap para diseño visual
 	•	GitHub + Terminal para colaboración
 
-📂 Estructura clave del proyecto:
+# 🖥️ HSC - Proyecto Semana 8 PGY3221
+
+Este proyecto corresponde al desarrollo de la Semana 8 del curso **Programación Web (PGY3221)** de Duoc UC.
+
+## ✅ Objetivos cumplidos
+
+- ✔️ API REST con Django Rest Framework
+- ✔️ Conexión a base de datos Oracle
+- ✔️ Autenticación por Token
+- ✔️ Consumo de servicio web externo (clima) con visualización en el frontend
+- ✔️ Integración completa con Django (modelos, views, templates, URLs)
+- ✔️ Subida a GitHub en repositorio exclusivo
+
+## 🌐 Endpoints importantes
+
+- `http://127.0.0.1:8000/api/productos/` → Protegido por Token
+- `http://127.0.0.1:8000/api/ventas/<usuario>/` → Protegido por Token
+- `http://127.0.0.1:8000/api/clima/` → Servicio de clima (API)
+- `http://127.0.0.1:8000/clima/` → Vista visual del clima con animación
+
+## 🔒 Autenticación por Token
+
+Para acceder a los endpoints protegidos, se debe incluir el header:
+
+Puedes obtener el token desde el Django admin o utilizando la API de login.
+
+## 🧪 Pruebas realizadas
+
+- Pruebas de endpoints en Postman
+- Verificación visual de interfaz de clima
+- Login, carrito, y consumo de datos desde Oracle
+
+## 📁 Estructura relevante
 
 Hsc/
-├── api_hsc/
-│   ├── views.py         # API y consumo de servicio externo
-│   ├── serializers.py   # Serialización de modelos
-│   ├── urls.py          # Rutas de API y Web
-├── templates/
-│   └── api_hsc/noticias.html
-├── settings.py          # Configuración base + REST + Token
-└── .gitignore           # Ignora archivos mayores a 100MB
+├── Inicio/
+│   ├── views.py
+│   ├── views_api.py
+│   ├── serializers.py
+│   ├── templates/
+│   │   └── Inicio/
+│   │       ├── index.html
+│   │       ├── clima.html
+│   │       └── ventas_api.html
+│   ├── static/
+│   │   └── Inicio/img/clima/
+│   │       ├── soleado.jpg
+│   │       ├── lluvia.jpg
+│   │       ├── nublado.jpg
+│   │       └── tormenta.jpg
+├── manage.py
+├── db.sqlite3 (ignorado)
+├── wallet/ (ignorado)
+└── README.md
 
 
+## 👨‍💻 Autor
 
+Eduardo Guerrero Soto - Duoc UC  
+Curso: PGY3221 – Programación Web  
+Semana: 8
 
+---
 
-
-
-
+> Repositorio oficial: [github.com/Chiripio/Hsc_Semana8](https://github.com/Chiripio/Hsc_Semana8)
 
