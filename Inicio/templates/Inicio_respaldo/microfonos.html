@@ -1,22 +1,24 @@
 {% extends 'Inicio/plantMain.html' %}
 {% load static %}
 {% block css %}
-<link rel="stylesheet" href="{% static 'Inicio/css/estilo-proce.css' %}">
+<link rel="stylesheet" href="{% static 'Inicio/css/estilos-categorias.css' %}">
 {% endblock css %}
 {% block imagen %}
 <div class="img-hd">
     <div class="txt-hd">
-        <p class="lh-lg">Procesadores</p>
+        <p class="lh-lg">Micrófonos</p>
     </div>
 </div>
 {% endblock imagen %}
 {% block contenido %}
 <section class="items">
+
     <div class="container">
         <div class="row items no-gutter">
-            {% for c in procesador %}
+            {% for c in mic %}
             <div class="col-xl-3 col-md-6 col-sm-12">
-                <a href="{% url 'procesador' idp=c.idProducto usuario=usuario.username|default:"anonimo" %}">
+                
+                <a href="{% url 'micro' idmic=c.idProducto usuario=usuario.username%}">
                     <img src="{{c.imagenProd.url}}" alt="Error :D" id="img2" class="img-fluid">
                     <p class="text-break">{{c.nombreProducto}}</p>
                     <h6>$ {{c.precioProducto}}</h6>
@@ -27,3 +29,6 @@
     </div>
 </section>
 {% endblock contenido %}
+    
+    
+</html>

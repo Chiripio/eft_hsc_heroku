@@ -1,5 +1,4 @@
 from django.shortcuts import render,redirect
-from django.urls import reverse
 from .models import Usuario,Direccion,Comuna,Region,TipoUsuario, Producto, Marca,Categoria,TipoProd,Marca
 from django.contrib import messages
 from .Carrito import Carrito
@@ -11,14 +10,17 @@ from django.http import JsonResponse
 # Create your views here.
 def inicio(request):
     try:
+        # Obtener IP del visitante
         ip = request.META.get('REMOTE_ADDR', '')
         if ip == '127.0.0.1' or ip.startswith('192.168') or ip == '':
             ip = requests.get("https://api64.ipify.org").text
 
+        # Obtener ciudad por IP
         location_url = f'https://ipapi.co/{ip}/json/'
         location_response = requests.get(location_url, timeout=5).json()
         ciudad = location_response.get('city', 'Santiago')
 
+        # Obtener clima desde OpenWeather
         api_key = '3aa40bf58c891102b7f62742923f8b68'
         clima_url = f'https://api.openweathermap.org/data/2.5/weather?q={ciudad}&appid={api_key}&units=metric&lang=es'
         clima_response = requests.get(clima_url, timeout=5).json()
@@ -34,36 +36,10 @@ def inicio(request):
             'icono': icono
         }
 
-        # Obtener valor del dólar desde mindicador.cl
-        dolar = None
-        try:
-            response = requests.get("https://mindicador.cl/api", timeout=5)
-            data = response.json()
-            dolar = round(data['dolar']['valor'])
-        except:
-            dolar = None
-
-        usuario = None
-        if 'usuario' in request.session:
-            try:
-                usuario = Usuario.objects.get(username=request.session['usuario'])
-            except Usuario.DoesNotExist:
-                usuario = None
-
-        return render(request, 'Inicio/index.html', {
-            'clima': clima,
-            'usuario': usuario,
-            'dolar': dolar,
-            'ver_clima_url': reverse('ver_clima')
-        })
+        return render(request, 'Inicio/index.html', {'clima': clima})
 
     except Exception as e:
-        return render(request, 'Inicio/index.html', {
-            'clima': None,
-            'error': str(e),
-            'usuario': None,
-            'dolar': None
-        })
+        return render(request, 'Inicio/index.html', {'clima': None, 'error': str(e)})
 
 
 
@@ -90,28 +66,10 @@ def menuadmin(request):
 
     return render(request,'Inicio/dashboard-admin.html')
 
-def carrito(request, id):
-    usuario = None
-    if 'usuario' in request.session:
-        try:
-            usuario = Usuario.objects.get(username=request.session['usuario'])
-        except Usuario.DoesNotExist:
-            usuario = None
-
-    # Obtener valor del dólar desde la API del Mindicador
-    valor_dolar = None
-    try:
-        response = requests.get("https://mindicador.cl/api", timeout=5)
-        data = response.json()
-        valor_dolar = data['dolar']['valor']
-    except Exception as e:
-        valor_dolar = None
-
-    contexto = {
-        "usuario": usuario,
-        "valor_dolar": valor_dolar,
-    }
-    return render(request, 'Inicio/carrito.html', contexto)
+def carrito(request,id):
+    usuario = Usuario.objects.get(username=id)
+    contexto = {"usuario":usuario}
+    return render(request,'Inicio/carrito.html', contexto)
 
 def perfilusuario(request,id):
     usuario = Usuario.objects.get(username=id)
@@ -147,33 +105,7 @@ def modificarPerfil(request,id):
 
 
 # -------------------- PRODUCTOS --------------------
-
-# ----- Vistas para productos ANÓNIMO -----
-def mostrarMicAnonimo(request):
-    micros = Producto.objects.filter(tipoprod=1)
-    return render(request, "Inicio/microfonos.html", {"mic": micros})
-
-def mostrarTecladoAnonimo(request):
-    teclados = Producto.objects.filter(tipoprod=2)
-    return render(request, "Inicio/teclados.html", {"teclado": teclados})
-
-def mostrarMouseAnonimo(request):
-    mouses = Producto.objects.filter(tipoprod=5)
-    return render(request, "Inicio/mouses.html", {"mouse": mouses})
-
-def mostrarGraficaAnonimo(request):
-    graficas = Producto.objects.filter(tipoprod=3)
-    return render(request, "Inicio/graficas.html", {"grafica": graficas})
-
-def mostrarRamAnonimo(request):
-    rams = Producto.objects.filter(tipoprod=4)
-    return render(request, "Inicio/rams.html", {"ram": rams})
-
-def mostrarProcesadorAnonimo(request):
-    procesadores = Producto.objects.filter(tipoprod=6)
-    return render(request, "Inicio/procesadores.html", {"procesador": procesadores})
-# MICROFONOS
-def mostrarMic(request,id):
+# MICROFONOSdef mostrarMic(request,id):
     micros = Producto.objects.filter(tipoprod=1)
     usuario = None
     if id != "anonimo":
@@ -186,21 +118,13 @@ def mostrarMic(request,id):
 
 def micadmin (request,id):
     micros = Producto.objects.filter(tipoprod=1)
-    usuario = None
-    if id != "anonimo":
-        try:
-            usuario = Usuario.objects.get(username=id)
-        except Usuario.DoesNotExist:
-            usuario = None
+    usuario = Usuario.objects.get(username=id)
     contexto = {"mic": micros,"usuario":usuario}
     return render (request,'Inicio/micadmin.html',contexto) 
   
 def micro(request,idmic,usuario):
     productos = Producto.objects.get(idProducto = idmic)
-    try:
-        username = Usuario.objects.get(username=usuario)
-    except Usuario.DoesNotExist:
-        username = None
+    username = Usuario.objects.get(username=usuario)
     contexto ={"prod": productos,"usuario":username} 
     return render(request, "Inicio/mic1.html",contexto)    
 
@@ -220,21 +144,13 @@ def mostrarTeclado(request, id):
 
 def tecladoadmin (request,id):
     teclados = Producto.objects.filter(tipoprod=2)
-    usuario = None
-    if id != "anonimo":
-        try:
-            usuario = Usuario.objects.get(username=id)
-        except Usuario.DoesNotExist:
-            usuario = None
+    usuario = Usuario.objects.get(username=id)
     contexto = {"teclado": teclados,"usuario":usuario}
     return render (request,'Inicio/tecladoadmin.html',contexto) 
 
 def teclado(request,idk, usuario):
     productos = Producto.objects.get(idProducto = idk)
-    try:
-        username = Usuario.objects.get(username=usuario)
-    except Usuario.DoesNotExist:
-        username = None
+    username = Usuario.objects.get(username=usuario)
     contexto = {"prod": productos,"usuario":username}
     return render(request, "Inicio/mic1.html",contexto)
 
@@ -252,20 +168,12 @@ def mostrarMouse(request,id):
 
 def mouseAdmin (request,id):
     mouses= Producto.objects.filter(tipoprod=5)
-    usuario = None
-    if id != "anonimo":
-        try:
-            usuario = Usuario.objects.get(username=id)
-        except Usuario.DoesNotExist:
-            usuario = None
+    usuario = Usuario.objects.get(username=id)
     contexto = {"mouse": mouses,"usuario":usuario}
     return render (request,'Inicio/mouseAdmin.html',contexto) 
     
 def mouse(request,idm,usuario):
-    try:
-        usuario = Usuario.objects.get(username=usuario)
-    except Usuario.DoesNotExist:
-        usuario = None
+    usuario = Usuario.objects.get(username=usuario)
     productos = Producto.objects.get(idProducto = idm)
     contexto = {"prod": productos,"usuario":usuario}
     return render(request, "Inicio/mic1.html",contexto)    
@@ -284,21 +192,13 @@ def mostrarGrafica(request,id):
 
 def graficaAdmin (request,id):
     graficas= Producto.objects.filter(tipoprod=3)
-    usuario = None
-    if id != "anonimo":
-        try:
-            usuario = Usuario.objects.get(username=id)
-        except Usuario.DoesNotExist:
-            usuario = None
+    usuario = Usuario.objects.get(username=id)
     contexto ={"grafica": graficas,"usuario":usuario}
     return render (request,'Inicio/graficaAdmin.html',contexto) 
     
 def grafica(request,idg,usuario):
     productos = Producto.objects.get(idProducto = idg)
-    try:
-        usuario = Usuario.objects.get(username=usuario)
-    except Usuario.DoesNotExist:
-        usuario = None
+    usuario = Usuario.objects.get(username= usuario)
     contexto = {"prod": productos,"usuario":usuario}
     return render(request, "Inicio/mic1.html",contexto)    
 
@@ -316,21 +216,13 @@ def mostrarProcesador(request,id):
 
 def procesadorAdmin (request,id):
     procesadores= Producto.objects.filter(tipoprod=6)
-    usuario = None
-    if id != "anonimo":
-        try:
-            usuario = Usuario.objects.get(username=id)
-        except Usuario.DoesNotExist:
-            usuario = None
+    usuario = Usuario.objects.get(username= id)
     contexto = {"procesador": procesadores,"usuario":usuario}
     return render (request,'Inicio/procesadorAdmin.html',contexto) 
     
 def procesador(request,idp,usuario):
     productos = Producto.objects.get(idProducto = idp)
-    try:
-        usuario = Usuario.objects.get(username=usuario)
-    except Usuario.DoesNotExist:
-        usuario = None
+    usuario = Usuario.objects.get(username= usuario)
     contexto = {"prod": productos,"usuario":usuario}
     return render(request, "Inicio/mic1.html",contexto)  
 
@@ -348,21 +240,13 @@ def mostrarRam(request,id):
 
 def ramAdmin (request,id):
     rams= Producto.objects.filter(tipoprod=4)
-    usuario = None
-    if id != "anonimo":
-        try:
-            usuario = Usuario.objects.get(username=id)
-        except Usuario.DoesNotExist:
-            usuario = None
+    usuario = Usuario.objects.get(username= id)
     contexto = {"ram": rams,"usuario":usuario}
     return render (request,'Inicio/ramAdmin.html',contexto) 
     
 def ram(request,idr,usuario):
     productos = Producto.objects.get(idProducto = idr)
-    try:
-        usuario = Usuario.objects.get(username=usuario)
-    except Usuario.DoesNotExist:
-        usuario = None
+    usuario = Usuario.objects.get(username= usuario)
     contexto = {"prod": productos,"usuario":usuario}
     return render(request, "Inicio/mic1.html",contexto )    
 
@@ -403,10 +287,6 @@ def registrar_m (request):
     except:
         Usuario.objects.create(username = user , contrasennia = contra, nombre = nombree, apellido = apellido, email = correo,tipousuario = tipousuario2)
         x = Usuario.objects.get(username = user)
-        # Check if user already has a Direccion before creating
-        if Direccion.objects.filter(usuario=x).exists():
-            messages.error(request, 'El usuario ya tiene una dirección asociada.')
-            return redirect('registrarse')
         Direccion.objects.create(descripcionDir = direccion, usuario = x,region = region2)
         return redirect ('iniciar')
 
@@ -421,8 +301,8 @@ def iniciar_sesion(request):
                 if usuario2.tipousuario.idTipoUsuario == 1:
                     return redirect('menu_admin')
                 else:
-                    request.session['usuario'] = usuario2.username
-                    return redirect('inicio')
+                    contexto = {"usuario": usuario2}
+                    return inicio(request, usuario2)
             except Usuario.DoesNotExist:
                 messages.error(request, 'El usuario o la contraseña son incorrectos')
                 return redirect('iniciar')
@@ -503,50 +383,26 @@ def editarProducto(request,idProducto):
 
 def agregar_producto(request, idProducto):
     carrito = Carrito(request)
-    if 'usuario' not in request.session or request.session['usuario'] == 'anonimo':
-        if request.user.is_authenticated:
-            request.session['usuario'] = request.user.username
-        else:
-            request.session['usuario'] = 'anonimo'
     producto = Producto.objects.get(idProducto=idProducto)
     carrito.agregar(producto)
-    usuario = request.session.get('usuario', 'anonimo')
-    return redirect('carrito', id=usuario)
+    return redirect('carrito', id='anonimo')  # puedes ajustar a un id fijo o manejarlo de otra forma
 
 def eliminar_producto(request, idProducto):
     carrito = Carrito(request)
-    if 'usuario' not in request.session or request.session['usuario'] == 'anonimo':
-        if request.user.is_authenticated:
-            request.session['usuario'] = request.user.username
-        else:
-            request.session['usuario'] = 'anonimo'
     producto = Producto.objects.get(idProducto=idProducto)
     carrito.eliminar(producto)
-    usuario = request.session.get('usuario', 'anonimo')
-    return redirect('carrito', id=usuario)
+    return redirect('carrito', id='anonimo')
 
 def restar_producto(request, idProducto):
     carrito = Carrito(request)
-    if 'usuario' not in request.session or request.session['usuario'] == 'anonimo':
-        if request.user.is_authenticated:
-            request.session['usuario'] = request.user.username
-        else:
-            request.session['usuario'] = 'anonimo'
     producto = Producto.objects.get(idProducto=idProducto)
     carrito.restar(producto)
-    usuario = request.session.get('usuario', 'anonimo')
-    return redirect('carrito', id=usuario)
+    return redirect('carrito', id='anonimo')
 
 def limpiar_producto(request):
     carrito = Carrito(request)
-    if 'usuario' not in request.session or request.session['usuario'] == 'anonimo':
-        if request.user.is_authenticated:
-            request.session['usuario'] = request.user.username
-        else:
-            request.session['usuario'] = 'anonimo'
     carrito.limpiar()
-    usuario = request.session.get('usuario', 'anonimo')
-    return redirect('carrito', id=usuario)
+    return redirect('carrito', id='anonimo')
 
 
 
@@ -573,48 +429,39 @@ def clima_actual(request):
 
 
 
+# Versión corregida y funcional de ver_clima
 def ver_clima(request):
-    usuario = None
-    if 'usuario' in request.session:
-        try:
-            usuario = Usuario.objects.get(username=request.session['usuario'])
-        except Usuario.DoesNotExist:
-            usuario = None
+    try:
+        # Obtener IP del visitante
+        ip = request.META.get('REMOTE_ADDR', '')
+        if ip == '127.0.0.1' or ip.startswith('192.168') or ip == '':
+            ip = requests.get("https://api64.ipify.org").text
 
-    # Obtener clima y dólar desde el context processor directamente
-    from .context_processor import clima_y_dolar
-    contexto = clima_y_dolar(request)
-    contexto["usuario"] = usuario
+        # Obtener ciudad por IP
+        location_url = f'https://ipapi.co/{ip}/json/'
+        location_response = requests.get(location_url, timeout=5).json()
+        ciudad = location_response.get('city', 'Santiago')
 
-    return render(request, 'Inicio/clima.html', contexto)
+        # Obtener clima desde OpenWeather
+        api_key = '3aa40bf58c891102b7f62742923f8b68'
+        clima_url = f'https://api.openweathermap.org/data/2.5/weather?q={ciudad}&appid={api_key}&units=metric&lang=es'
+        clima_response = requests.get(clima_url, timeout=5).json()
+
+        descripcion = clima_response['weather'][0]['description']
+        temperatura = clima_response['main']['temp']
+
+        clima = {
+            'ciudad': ciudad,
+            'descripcion': descripcion,
+            'temperatura': round(temperatura)
+        }
+
+        return render(request, 'Inicio/clima.html', {'clima': clima})
+
+    except Exception as e:
+        return render(request, 'Inicio/clima.html', {'error': str(e)})
 
 
-from django.contrib import messages
-
+# Vista para confirmar pago
 def confirmar_pago(request):
-    if 'usuario' not in request.session:
-        request.session['usuario'] = 'anonimo'
-
-    carrito = request.session.get('carrito', {})
-    if not carrito:
-        messages.warning(request, "Tu carrito está vacío. Agrega productos antes de pagar.")
-        return redirect('carrito', id=request.session.get('usuario', 'anonimo'))
-
-    total = sum(item['acumulado'] for item in carrito.values())
-
-    # Simulación de compra
-    messages.success(request, f"¡Gracias por tu compra! Total pagado: ${total}")
-
-    # Vaciar carrito
-    request.session['carrito'] = {}
-
-    return render(request, 'Inicio/confirmar_pago.html', {'total_pagado': total})
-
-
-# -------------------- CERRAR SESION --------------------
-from django.contrib.auth import logout
-
-def cerrar_sesion(request):
-    logout(request)
-    request.session.flush()  # Limpia completamente la sesión si existe clave 'usuario'
-    return redirect('inicio')
+    return render(request, 'Inicio/confirmar_pago.html')

@@ -46,37 +46,37 @@
                             <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-bag-shopping"></i> Tienda</a></a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                               {% if usuario %}
-                                <li><a class="dropdown-item" href="{% url 'mostrarMic' usuario.username|default:"anonimo" %}">Micrófonos</a></li>
+                                <li><a class="dropdown-item" href="{% url 'mostrarMic' usuario.username %}">Micrófonos</a></li>
                               {% else %} 
                                 <li><a class="dropdown-item" href="{% url 'iniciar' %}">Micrófonos</a></li>
                               {% endif %}
 
                               {% if usuario %}
-                                <li><a class="dropdown-item" href="{% url 'teclados'  usuario.username|default:"anonimo" %}">Teclados</a></li>
+                                <li><a class="dropdown-item" href="{% url 'teclados'  usuario.username %}">Teclados</a></li>
                               {% else %}
                                 <li><a class="dropdown-item" href="{% url 'iniciar' %}">Teclados</a></li> 
                               {% endif %}
 
                               {% if usuario %}
-                                <li><a class="dropdown-item" href="{% url 'mostrarMouse' usuario.username|default:"anonimo" %}">Mouse Gamer</a></li>
+                                <li><a class="dropdown-item" href="{% url 'mostrarMouse' usuario.username %}">Mouse Gamer</a></li>
                               {% else %}
                                 <li><a class="dropdown-item" href="{% url 'iniciar' %}">Mouse Gamer</a></li> 
                               {% endif %}
 
                               {% if usuario %}
-                                <li><a class="dropdown-item" href="{% url 'mostrarGrafica' usuario.username|default:"anonimo"  %}">Tarjetas gráficas</a></li>
+                                <li><a class="dropdown-item" href="{% url 'mostrarGrafica' usuario.username  %}">Tarjetas gráficas</a></li>
                               {% else %} 
                                 <li><a class="dropdown-item" href="{% url 'iniciar' %}">Tarjetas gráficas</a></li>
                               {% endif %}
 
                               {% if usuario %}
-                                <li><a class="dropdown-item" href="{% url 'mostrarProcesador' usuario.username|default:"anonimo"  %}">Procesadores</a></li>
+                                <li><a class="dropdown-item" href="{% url 'mostrarProcesador' usuario.username  %}">Procesadores</a></li>
                               {% else %}
                                 <li><a class="dropdown-item" href="{% url 'iniciar' %}">Procesadores</a></li> 
                               {% endif %}
 
                               {% if usuario %}
-                                <li><a class="dropdown-item" href="{% url 'mostrarRam' usuario.username|default:"anonimo"%}">Memorias</a></li>
+                                <li><a class="dropdown-item" href="{% url 'mostrarRam' usuario.username%}">Memorias</a></li>
                               {% else %}
                                 <li><a class="dropdown-item" href="{% url 'iniciar' %}">Memorias</a></li> 
                               {% endif %}
@@ -84,14 +84,14 @@
                           </li>
                         <li class="nav-item">
                             {% if usuario %}
-                                <a class="nav-link active " aria-current="page" href="{% url 'miperfil' usuario.username|default:"anonimo" %}"><i class="fa-solid fa-user"></i>{{usuario.username|default:"anonimo"}}</a>
+                                <a class="nav-link active " aria-current="page" href="{% url 'miperfil' usuario.username %}"><i class="fa-solid fa-user"></i>{{usuario.username}}</a>
                             {% else %}
                                 <a class="nav-link active " aria-current="page" href="{% url 'iniciar' %}"><i class="fa-solid fa-user"></i> Iniciar Sesion</a>
                             {% endif %}
                         </li>
                         <li class="nav-item">
                             {% if usuario %}
-                            <a class="nav-link active" aria-current="page" href="{%url 'carrito' usuario.username|default:"anonimo" %}"> Carrito</a>
+                            <a class="nav-link active" aria-current="page" href="{%url 'carrito' usuario.username %}"> Carrito</a>
                             {% else %}
                             <a class="nav-link active" aria-current="page" href="#"> Carrito</a>
                             {% endif %}

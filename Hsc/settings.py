@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'Inicio',
-    'rest_api',
     'api_hsc',
     'rest_framework.authtoken',
 ]
@@ -68,6 +67,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'Inicio.context_processor.total_carrito',
+                'Inicio.context_processor.clima_y_dolar',
 
                 
             ],

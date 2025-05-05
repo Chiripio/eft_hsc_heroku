@@ -77,3 +77,57 @@ El clima se muestra dinámicamente en:
 ✔️ Proyecto completo subido a GitHub
 
 
+
+📌 Instrucciones del Proyecto HSC
+
+⚙️ Requisitos del sistema
+
+- Python 3.10+
+- Oracle Instant Client y `oracledb`
+- Django 4.2+
+- Bootstrap 5
+- Cuenta Oracle con esquema cargado (`ScriptFinal.sql` ejecutado)
+
+🚀 Cómo ejecutar el proyecto
+
+1. Clona este repositorio o descarga el proyecto:
+   git clone https://github.com/Chiripio/Hsc_Semana8.git
+
+2. Crea y activa un entorno virtual:
+   python3 -m venv venv
+   source venv/bin/activate  # En Windows: venv\Scripts\activate
+
+3. Instala las dependencias:
+   pip install -r requirements.txt
+
+4. Asegúrate de tener el archivo `wallet` de Oracle si estás usando autenticación con wallet. Colócalo en `/oracle_wallet/` y configura `settings.py` correctamente.
+
+5. Ejecuta el servidor:
+   python manage.py runserver
+
+🔑 Credenciales de ejemplo
+
+- Usuario administrador Django:
+  - Usuario: admin
+  - Contraseña: DUoc2025
+
+- Usuario registrado (app):
+  - Usuario: usuario1
+  - Contraseña: 123
+
+🔗 Endpoints principales
+
+- Inicio: /
+- Carrito: /carrito/usuario/
+- API Clima: /api/clima/
+- API Ventas: /api/ventas/<usuario>/
+- API Productos: /api/productos/
+
+🗂️ Notas adicionales
+
+- Al iniciar sesión, se redirige según el tipo de usuario.
+- Si el usuario no está autenticado, se registra como `anonimo` en el carrito.
+- El botón "Comprar" simula un pago y limpia el carrito.
+- El clima y el dólar se cargan automáticamente usando APIs públicas.
+
+

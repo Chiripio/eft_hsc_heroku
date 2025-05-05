@@ -1,85 +1,64 @@
 {% extends 'Inicio/plantMain.html' %}
 {% load static %}
-
-{% block css %}
-<style>
-    body {
-        background-color: rgb(40, 3, 126);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        transition: background-image 0.5s ease-in-out;
-        font-family: 'Quicksand','Open Sans', 'Helvetica Neue';
-        text-align: center;
-    }
-
-    .clima-container {
-        margin-top: 50px;
-        color: white;
-        padding: 50px 20px;
-    }
-
-    .clima-container h1 {
-        font-size: 40px;
-        margin-bottom: 30px;
-    }
-
-    .clima-container p {
-        font-size: 22px;
-        margin-bottom: 15px;
-    }
-
-    .icono-clima {
-        font-size: 100px;
-        animation: flotar 2.5s ease-in-out infinite;
-        margin-bottom: 30px;
-    }
-
-    @keyframes flotar {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-20px); }
-        100% { transform: translateY(0px); }
-    }
-
-    /* Para mantener el mismo estilo del badge del clima si se usa */
-    .text-end a.text-decoration-none {
-        display: inline-block;
-        width: auto;
-        cursor: pointer;
-        position: relative;
-        z-index: 10;
-    }
-</style>
-{% endblock %}
-
 {% block contenido %}
-<section class="clima-container">
-    {% if clima %}
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                let desc = "{{ clima.descripcion|lower }}";
-                let fondo = "";
+<section class="compsyper fondo1 text-white py-5">
+    <div class="container text-center">
+        <h1 class="mb-4">Clima y Valor del Dólar</h1>
+        <p class="text-light mb-5">Información actualizada en tiempo real desde APIs públicas</p>
 
-                if (desc.includes("nube")) fondo = "/static/Inicio/img/clima/nublado.jpg";
-                else if (desc.includes("lluvia")) fondo = "/static/Inicio/img/clima/lluvia.jpg";
-                else if (desc.includes("tormenta")) fondo = "/static/Inicio/img/clima/tormenta.jpg";
-                else if (desc.includes("nieve")) fondo = "/static/Inicio/img/clima/nieve.jpg";
-                else if (desc.includes("sol") || desc.includes("despejado")) fondo = "/static/Inicio/img/clima/soleado.jpg";
+        <div class="row justify-content-center">
+            <!-- Clima -->
+            <div class="col-md-5 mb-4">
+                <div class="bg-light text-dark p-4 rounded shadow">
+                    {% if clima %}
+                        <div class="d-flex justify-content-center align-items-center gap-2 mb-3">
+                            {% if "lluvia" in clima.descripcion|lower %}
+                                <i class="fas fa-cloud-showers-heavy fa-3x text-primary floating-icon"></i>
+                            {% elif "nublado" in clima.descripcion|lower %}
+                                <i class="fas fa-cloud fa-3x text-secondary floating-icon"></i>
+                            {% elif "despejado" in clima.descripcion|lower or "soleado" in clima.descripcion|lower %}
+                                <i class="fas fa-sun fa-3x text-warning floating-icon"></i>
+                            {% else %}
+                                <i class="fas fa-smog fa-3x text-muted floating-icon"></i>
+                            {% endif %}
+                            <h4 class="mb-0">Clima actual</h4>
+                        </div>
+                        <p class="lead mb-1"><strong>Ciudad:</strong> {{ clima.ciudad }}</p>
+                        <p class="lead mb-1"><strong>Temperatura:</strong> {{ clima.temperatura }}°C</p>
+                        <p class="lead mb-0"><strong>Descripción:</strong> {{ clima.descripcion }}</p>
+                    {% else %}
+                        <p class="text-muted">No se pudo obtener el clima.</p>
+                    {% endif %}
+                </div>
+            </div>
 
-                if (fondo !== "") {
-                    document.body.style.backgroundImage = `url('${fondo}')`;
-                }
-            });
-        </script>
-
-        <div>
-            <div class="icono-clima">🌤️</div>
-            <h1>Clima actual en {{ clima.ciudad }}</h1>
-            <p>🌡️ {{ clima.temperatura }}°C</p>
-            <p>📝 {{ clima.descripcion|title }}</p>
+            <!-- Dólar -->
+            <div class="col-md-5 mb-4">
+                <div class="bg-light text-dark p-4 rounded shadow">
+                    <div class="d-flex justify-content-center align-items-center gap-2 mb-3">
+                        <i class="fas fa-dollar-sign fa-2x text-success"></i>
+                        <h4 class="mb-0">Valor del dólar</h4>
+                    </div>
+                    {% if dolar %}
+                        <p class="lead">Dólar observado: <strong>${{ dolar }}</strong></p>
+                    {% else %}
+                        <p class="text-muted">No se pudo obtener el valor del dólar.</p>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-    {% else %}
-        <p>No se pudo obtener el clima actual.</p>
-    {% endif %}
+    </div>
 </section>
+<style>
+.floating-icon {
+    animation: float 3s ease-in-out infinite;
+    position: relative;
+}
+
+@keyframes float {
+    0% { top: 0px; }
+    50% { top: -10px; }
+    100% { top: 0px; }
+}
+</style>
 {% endblock %}

@@ -17,7 +17,7 @@
     <div>
         <div class="row">
             <div class="col-3"></div>
-            <div class="col-6"><a href="{% url 'Add' prod.idProducto %}" class="btn btn-primary button submit fila4 ">Añadir al carrito</a></div>
+            <div class="col-6"><a href="{%url 'Add' idProducto=prod.idProducto usuario=usuario.username%}" class="btn btn-primary button submit fila4 ">Añadir al carrito</a></div>
             <div class="col-3"></div>
         </div>
     </div>

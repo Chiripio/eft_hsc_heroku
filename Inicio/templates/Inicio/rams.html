@@ -16,7 +16,7 @@
         <div class="row items no-gutter">
             {% for c in ram %}
             <div class="col-xl-3 col-md-6 col-sm-12">
-                <a href="{% url 'ram' idr=c.idProducto usuario=usuario.username%}">
+                <a href="{% url 'ram' idr=c.idProducto usuario=usuario.username|default:"anonimo"%}">
                     <img src="{{c.imagenProd.url}}" alt="Error :D" id="img2" class="img-fluid">
                     <p class="text-break">{{c.nombreProducto}}</p>
                     <h6>$ {{c.precioProducto}}</h6>

@@ -29,3 +29,10 @@ __pycache__/
 .DS_Store
 wallet/
 *.log
+venv/
+__pycache__/
+*.sqlite3
+*.pyc
+.DS_Store
+wallet/
+*.log
