@@ -130,4 +130,46 @@ El clima se muestra dinámicamente en:
 - El botón "Comprar" simula un pago y limpia el carrito.
 - El clima y el dólar se cargan automáticamente usando APIs públicas.
 
+# HSC Componentes - Proyecto Semana 8 (PGY3221)
 
+Este proyecto corresponde a la **Semana 8 del curso Programación Web (PGY3221)** y presenta una aplicación funcional basada en Django + Oracle. A continuación, se detallan los principales avances implementados:
+
+---
+
+## ✅ Funcionalidades Implementadas
+
+- 🔄 **Carrito de compras funcional** con sesión por usuario (anónimo o registrado).
+- 🔐 **Manejo de sesión**:
+  - Iniciar sesión con cuenta creada en Oracle.
+  - Cierre de sesión visible y funcional.
+- 🌤️ **Consumo de API externa (OpenWeather)** para mostrar clima según IP del visitante.
+- 💲 **Consumo de API externa (mindicador.cl)** para obtener el valor actualizado del dólar.
+- 🧾 **Simulación de pago**:
+  - Página `confirmar_pago.html` muestra total.
+  - Limpieza de carrito tras la confirmación.
+- 🧩 Integración total con Oracle como base de datos (vía oracledb).
+
+---
+
+## 📁 Estructura destacada
+
+- `Inicio/views.py`: lógica del carrito, sesión, clima y confirmación de pago.
+- `Inicio/templates/Inicio/`: vistas HTML funcionales.
+- `static/js/carrito.js`: control JS del carrito.
+- `media/productos/`: imágenes usadas en la tienda.
+
+---
+
+## 💾 Base de datos
+
+- Oracle con tablas ya cargadas mediante `proyecto1.sql`.
+- El login y el manejo de usuarios se realiza con los datos del modelo `Usuario`.
+
+---
+
+## 🚀 Cómo iniciar
+
+1. Asegúrate de tener configurada la conexión Oracle.
+2. Activa el entorno virtual y ejecuta:
+   ```bash
+   python manage.py runserver
