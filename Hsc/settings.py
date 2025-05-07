@@ -10,7 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-from pathlib import Path, os
+from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -97,13 +98,8 @@ os.environ["TNS_ADMIN"] = str(BASE_DIR / "wallet" / "network" / "admin")
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.oracle',
-        'NAME': 'edu_high',
-        'USER': 'PROYECTO1',
-        'PASSWORD': 'Usuario1',
-        'OPTIONS': {
-            'encoding': 'UTF-8',
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
