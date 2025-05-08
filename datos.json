@@ -1,5 +1,124 @@
 [
 {
+  "model": "Inicio.marca",
+  "pk": 1,
+  "fields": {
+    "nombreMarca": "Razer"
+  }
+},
+{
+  "model": "Inicio.marca",
+  "pk": 2,
+  "fields": {
+    "nombreMarca": "HyperX"
+  }
+},
+{
+  "model": "Inicio.marca",
+  "pk": 3,
+  "fields": {
+    "nombreMarca": "Fifine"
+  }
+},
+{
+  "model": "Inicio.marca",
+  "pk": 4,
+  "fields": {
+    "nombreMarca": "Blue Yeti"
+  }
+},
+{
+  "model": "Inicio.marca",
+  "pk": 5,
+  "fields": {
+    "nombreMarca": "Asus"
+  }
+},
+{
+  "model": "Inicio.marca",
+  "pk": 21,
+  "fields": {
+    "nombreMarca": "Redragon"
+  }
+},
+{
+  "model": "Inicio.marca",
+  "pk": 22,
+  "fields": {
+    "nombreMarca": "Cougar"
+  }
+},
+{
+  "model": "Inicio.marca",
+  "pk": 41,
+  "fields": {
+    "nombreMarca": "Logitech"
+  }
+},
+{
+  "model": "Inicio.marca",
+  "pk": 42,
+  "fields": {
+    "nombreMarca": "corsair"
+  }
+},
+{
+  "model": "Inicio.marca",
+  "pk": 43,
+  "fields": {
+    "nombreMarca": "SteelSeries"
+  }
+},
+{
+  "model": "Inicio.marca",
+  "pk": 44,
+  "fields": {
+    "nombreMarca": "Asus"
+  }
+},
+{
+  "model": "Inicio.marca",
+  "pk": 61,
+  "fields": {
+    "nombreMarca": "Zotac"
+  }
+},
+{
+  "model": "Inicio.marca",
+  "pk": 62,
+  "fields": {
+    "nombreMarca": "Msi"
+  }
+},
+{
+  "model": "Inicio.marca",
+  "pk": 63,
+  "fields": {
+    "nombreMarca": "Aorus"
+  }
+},
+{
+  "model": "Inicio.marca",
+  "pk": 64,
+  "fields": {
+    "nombreMarca": "EVGA"
+  }
+},
+{
+  "model": "Inicio.marca",
+  "pk": 65,
+  "fields": {
+    "nombreMarca": "Intel"
+  }
+},
+{
+  "model": "Inicio.marca",
+  "pk": 66,
+  "fields": {
+    "nombreMarca": "AMD"
+  }
+},
+{
   "model": "Inicio.tipoprod",
   "pk": 1,
   "fields": {
