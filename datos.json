@@ -292,9 +292,8 @@
   },
   {
     "model": "Inicio.usuario",
-    "pk": 1,
+    "pk": "admin",
     "fields": {
-      "username": "admin",
       "contrasennia": "admin",
       "nombre": "admin",
       "apellido": "admin",
@@ -304,9 +303,8 @@
   },
   {
     "model": "Inicio.usuario",
-    "pk": 2,
+    "pk": "invitado",
     "fields": {
-      "username": "invitado",
       "contrasennia": "invitado",
       "nombre": "invitado",
       "apellido": "invitado",
@@ -316,9 +314,8 @@
   },
   {
     "model": "Inicio.usuario",
-    "pk": 3,
+    "pk": "cheka",
     "fields": {
-      "username": "cheka",
       "contrasennia": "12345",
       "nombre": "Carlos",
       "apellido": "Fabres",
@@ -328,9 +325,8 @@
   },
   {
     "model": "Inicio.usuario",
-    "pk": 4,
+    "pk": "salas_si",
     "fields": {
-      "username": "salas_si",
       "contrasennia": "2222",
       "nombre": "Salas",
       "apellido": "Gei",
