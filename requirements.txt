@@ -7,8 +7,10 @@ cx-Oracle==8.3.0
 dj-database-url==2.3.0
 Django==4.2.20
 djangorestframework==3.16.0
+gunicorn==23.0.0
 idna==3.10
 oracledb==3.1.0
+packaging==25.0
 pillow==11.2.1
 psycopg2-binary==2.9.9
 pycparser==2.22
