@@ -18,18 +18,20 @@ class Usuario(models.Model):
     def __str__(self):
         return self.nombre
 
-class Comuna(models.Model):
-    idComuna = models.AutoField(primary_key=True, verbose_name="Id de comuna", null=False, blank=False)
-    nombreCom = models.CharField(max_length=40, verbose_name="Nombre comuna", null=False, blank=False)
-    def __str__(self):
-        return self.nombreCom
-
 class Region(models.Model):
     idRegion = models.AutoField(primary_key=True, verbose_name="Id de region", null=False, blank=False)
     nombreReg = models.CharField(max_length=40, verbose_name="Nombre region", null=False, blank=False)
-    comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE, null=True)
+
     def __str__(self):
         return self.nombreReg
+
+class Comuna(models.Model):
+    idComuna = models.AutoField(primary_key=True, verbose_name="Id de comuna", null=False, blank=False)
+    nombreCom = models.CharField(max_length=40, verbose_name="Nombre comuna", null=False, blank=False)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nombreCom
 
 class Direccion(models.Model):
     idDireccion = models.AutoField(primary_key=True, verbose_name="Id de direccion", null=False, blank=False)
