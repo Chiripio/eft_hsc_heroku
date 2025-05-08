@@ -1,0 +1,242 @@
+[
+  {
+    "model": "Inicio.region",
+    "pk": 1,
+    "fields": {
+      "nombreReg": "Arica y Parinacota"
+    }
+  },
+  {
+    "model": "Inicio.region",
+    "pk": 2,
+    "fields": {
+      "nombreReg": "Tarapacá"
+    }
+  },
+  {
+    "model": "Inicio.region",
+    "pk": 3,
+    "fields": {
+      "nombreReg": "Antofagasta"
+    }
+  },
+  {
+    "model": "Inicio.region",
+    "pk": 4,
+    "fields": {
+      "nombreReg": "Atacama"
+    }
+  },
+  {
+    "model": "Inicio.region",
+    "pk": 5,
+    "fields": {
+      "nombreReg": "Coquimbo"
+    }
+  },
+  {
+    "model": "Inicio.region",
+    "pk": 6,
+    "fields": {
+      "nombreReg": "Valparaíso"
+    }
+  },
+  {
+    "model": "Inicio.region",
+    "pk": 7,
+    "fields": {
+      "nombreReg": "Metropolitana"
+    }
+  },
+  {
+    "model": "Inicio.region",
+    "pk": 8,
+    "fields": {
+      "nombreReg": "Libertador General Bernardo O'Higgins"
+    }
+  },
+  {
+    "model": "Inicio.region",
+    "pk": 9,
+    "fields": {
+      "nombreReg": "Maule"
+    }
+  },
+  {
+    "model": "Inicio.region",
+    "pk": 10,
+    "fields": {
+      "nombreReg": "Ñuble"
+    }
+  },
+  {
+    "model": "Inicio.region",
+    "pk": 11,
+    "fields": {
+      "nombreReg": "Biobío"
+    }
+  },
+  {
+    "model": "Inicio.region",
+    "pk": 12,
+    "fields": {
+      "nombreReg": "La Araucanía"
+    }
+  },
+  {
+    "model": "Inicio.region",
+    "pk": 13,
+    "fields": {
+      "nombreReg": "Los Ríos"
+    }
+  },
+  {
+    "model": "Inicio.region",
+    "pk": 14,
+    "fields": {
+      "nombreReg": "Los Lagos"
+    }
+  },
+  {
+    "model": "Inicio.region",
+    "pk": 15,
+    "fields": {
+      "nombreReg": "Aysén"
+    }
+  },
+  {
+    "model": "Inicio.region",
+    "pk": 16,
+    "fields": {
+      "nombreReg": "Magallanes"
+    }
+  },
+  {
+    "model": "Inicio.comuna",
+    "pk": 1,
+    "fields": {
+      "nombreCom": "Arica",
+      "region": 1
+    }
+  },
+  {
+    "model": "Inicio.comuna",
+    "pk": 2,
+    "fields": {
+      "nombreCom": "Iquique",
+      "region": 2
+    }
+  },
+  {
+    "model": "Inicio.comuna",
+    "pk": 3,
+    "fields": {
+      "nombreCom": "Antofagasta",
+      "region": 3
+    }
+  },
+  {
+    "model": "Inicio.comuna",
+    "pk": 4,
+    "fields": {
+      "nombreCom": "Copiapó",
+      "region": 4
+    }
+  },
+  {
+    "model": "Inicio.comuna",
+    "pk": 5,
+    "fields": {
+      "nombreCom": "La Serena",
+      "region": 5
+    }
+  },
+  {
+    "model": "Inicio.comuna",
+    "pk": 6,
+    "fields": {
+      "nombreCom": "Valparaíso",
+      "region": 6
+    }
+  },
+  {
+    "model": "Inicio.comuna",
+    "pk": 7,
+    "fields": {
+      "nombreCom": "Santiago",
+      "region": 7
+    }
+  },
+  {
+    "model": "Inicio.comuna",
+    "pk": 8,
+    "fields": {
+      "nombreCom": "Rancagua",
+      "region": 8
+    }
+  },
+  {
+    "model": "Inicio.comuna",
+    "pk": 9,
+    "fields": {
+      "nombreCom": "Talca",
+      "region": 9
+    }
+  },
+  {
+    "model": "Inicio.comuna",
+    "pk": 10,
+    "fields": {
+      "nombreCom": "Chillán",
+      "region": 10
+    }
+  },
+  {
+    "model": "Inicio.comuna",
+    "pk": 11,
+    "fields": {
+      "nombreCom": "Concepción",
+      "region": 11
+    }
+  },
+  {
+    "model": "Inicio.comuna",
+    "pk": 12,
+    "fields": {
+      "nombreCom": "Temuco",
+      "region": 12
+    }
+  },
+  {
+    "model": "Inicio.comuna",
+    "pk": 13,
+    "fields": {
+      "nombreCom": "Valdivia",
+      "region": 13
+    }
+  },
+  {
+    "model": "Inicio.comuna",
+    "pk": 14,
+    "fields": {
+      "nombreCom": "Puerto Montt",
+      "region": 14
+    }
+  },
+  {
+    "model": "Inicio.comuna",
+    "pk": 15,
+    "fields": {
+      "nombreCom": "Coyhaique",
+      "region": 15
+    }
+  },
+  {
+    "model": "Inicio.comuna",
+    "pk": 16,
+    "fields": {
+      "nombreCom": "Punta Arenas",
+      "region": 16
+    }
+  }
+]
