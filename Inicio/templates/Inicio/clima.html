@@ -39,7 +39,7 @@
                                     <div class="card bg-light h-100">
                                         <div class="card-body text-center">
                                             <h5 class="card-title">{{ dia.fecha }}</h5>
-                                            <img src="https://openweathermap.org/img/wn/{{ dia.icon }}@2x.png" alt="icono clima">
+                                            <img src="https://openweathermap.org/img/wn/{{ dia.icon }}@2x.png" alt="icono clima" class="forecast-icon floating-icon" style="max-width: 80px;">
                                             <p class="card-text mb-1"><strong>{{ dia.temperatura }}°C</strong></p>
                                             <p class="card-text text-capitalize">{{ dia.descripcion }}</p>
                                         </div>
@@ -78,6 +78,15 @@
     0% { top: 0px; }
     50% { top: -10px; }
     100% { top: 0px; }
+}
+
+.forecast-icon {
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    transition: transform 0.3s ease;
+}
+
+.forecast-icon:hover {
+    transform: scale(1.1) rotate(2deg);
 }
 </style>
 {% endblock %}
