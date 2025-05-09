@@ -1,0 +1,337 @@
+[
+  {
+    "model": "Inicio.tipoprod",
+    "pk": 1,
+    "fields": {
+      "nombreTipoProd": "Microfono"
+    }
+  },
+  {
+    "model": "Inicio.tipoprod",
+    "pk": 2,
+    "fields": {
+      "nombreTipoProd": "Teclado"
+    }
+  },
+  {
+    "model": "Inicio.tipoprod",
+    "pk": 3,
+    "fields": {
+      "nombreTipoProd": "Grafica"
+    }
+  },
+  {
+    "model": "Inicio.tipoprod",
+    "pk": 4,
+    "fields": {
+      "nombreTipoProd": "Ram"
+    }
+  },
+  {
+    "model": "Inicio.tipoprod",
+    "pk": 5,
+    "fields": {
+      "nombreTipoProd": "Mouse"
+    }
+  },
+  {
+    "model": "Inicio.tipoprod",
+    "pk": 6,
+    "fields": {
+      "nombreTipoProd": "Procesador"
+    }
+  },
+  {
+    "model": "Inicio.marca",
+    "pk": 1,
+    "fields": {
+      "nombreMarca": "Razer"
+    }
+  },
+  {
+    "model": "Inicio.marca",
+    "pk": 2,
+    "fields": {
+      "nombreMarca": "HyperX"
+    }
+  },
+  {
+    "model": "Inicio.marca",
+    "pk": 3,
+    "fields": {
+      "nombreMarca": "Fifine"
+    }
+  },
+  {
+    "model": "Inicio.marca",
+    "pk": 4,
+    "fields": {
+      "nombreMarca": "Blue Yeti"
+    }
+  },
+  {
+    "model": "Inicio.marca",
+    "pk": 21,
+    "fields": {
+      "nombreMarca": "Redragon"
+    }
+  },
+  {
+    "model": "Inicio.marca",
+    "pk": 22,
+    "fields": {
+      "nombreMarca": "Cougar"
+    }
+  },
+  {
+    "model": "Inicio.marca",
+    "pk": 41,
+    "fields": {
+      "nombreMarca": "Logitech"
+    }
+  },
+  {
+    "model": "Inicio.marca",
+    "pk": 44,
+    "fields": {
+      "nombreMarca": "Asus"
+    }
+  },
+  {
+    "model": "Inicio.marca",
+    "pk": 61,
+    "fields": {
+      "nombreMarca": "Zotac"
+    }
+  },
+  {
+    "model": "Inicio.marca",
+    "pk": 63,
+    "fields": {
+      "nombreMarca": "Aorus"
+    }
+  },
+  {
+    "model": "Inicio.marca",
+    "pk": 64,
+    "fields": {
+      "nombreMarca": "EVGA"
+    }
+  },
+  {
+    "model": "Inicio.marca",
+    "pk": 65,
+    "fields": {
+      "nombreMarca": "Intel"
+    }
+  },
+  {
+    "model": "Inicio.marca",
+    "pk": 66,
+    "fields": {
+      "nombreMarca": "AMD"
+    }
+  },
+  {
+    "model": "Inicio.producto",
+    "pk": 1,
+    "fields": {
+      "nombreProducto": "Razer Seriren Mini",
+      "precioProducto": 47200,
+      "stockProd": 10,
+      "imagenProd": "productos/seireni.jpg",
+      "marca": 1,
+      "tipoprod": 1
+    }
+  },
+  {
+    "model": "Inicio.producto",
+    "pk": 2,
+    "fields": {
+      "nombreProducto": "HyperX Quadcast S RGB",
+      "precioProducto": 100001,
+      "stockProd": 12,
+      "imagenProd": "productos/quad.jpg",
+      "marca": 2,
+      "tipoprod": 1
+    }
+  },
+  {
+    "model": "Inicio.producto",
+    "pk": 3,
+    "fields": {
+      "nombreProducto": "Fifine K669B",
+      "precioProducto": 37990,
+      "stockProd": 10,
+      "imagenProd": "productos/fifain.jpg",
+      "marca": 3,
+      "tipoprod": 1
+    }
+  },
+  {
+    "model": "Inicio.producto",
+    "pk": 4,
+    "fields": {
+      "nombreProducto": "Blue Yeti Snowball",
+      "precioProducto": 35990,
+      "stockProd": 10,
+      "imagenProd": "productos/snowball.png",
+      "marca": 4,
+      "tipoprod": 1
+    }
+  },
+  {
+    "model": "Inicio.producto",
+    "pk": 5,
+    "fields": {
+      "nombreProducto": "Redragon Kumara k552",
+      "precioProducto": 45990,
+      "stockProd": 7,
+      "imagenProd": "productos/k552_GqlmgaR.png",
+      "marca": 21,
+      "tipoprod": 2
+    }
+  },
+  {
+    "model": "Inicio.producto",
+    "pk": 6,
+    "fields": {
+      "nombreProducto": "Aorus RTX 3090",
+      "precioProducto": 2999990,
+      "stockProd": 2,
+      "imagenProd": "productos/3090_Jdxyrj7.png",
+      "marca": 63,
+      "tipoprod": 3
+    }
+  },
+  {
+    "model": "Inicio.producto",
+    "pk": 7,
+    "fields": {
+      "nombreProducto": "EVGA 2080TI",
+      "precioProducto": 1499990,
+      "stockProd": 4,
+      "imagenProd": "productos/2080_evga.png",
+      "marca": 64,
+      "tipoprod": 3
+    }
+  },
+  {
+    "model": "Inicio.producto",
+    "pk": 8,
+    "fields": {
+      "nombreProducto": "Intel i7-12600k",
+      "precioProducto": 699990,
+      "stockProd": 3,
+      "imagenProd": "productos/i7_12i.png",
+      "marca": 65,
+      "tipoprod": 6
+    }
+  },
+  {
+    "model": "Inicio.producto",
+    "pk": 9,
+    "fields": {
+      "nombreProducto": "AMD Ryzen 7 5800x",
+      "precioProducto": 497990,
+      "stockProd": 3,
+      "imagenProd": "productos/ryzen_7i.png",
+      "marca": 66,
+      "tipoprod": 6
+    }
+  },
+  {
+    "model": "Inicio.producto",
+    "pk": 10,
+    "fields": {
+      "nombreProducto": "HyperX Fury DDR4 16GB RGB",
+      "precioProducto": 140990,
+      "stockProd": 6,
+      "imagenProd": "productos/rams_hyperx.png",
+      "marca": 2,
+      "tipoprod": 4
+    }
+  },
+  {
+    "model": "Inicio.producto",
+    "pk": 11,
+    "fields": {
+      "nombreProducto": "Cougar MinosXT",
+      "precioProducto": 34990,
+      "stockProd": 10,
+      "imagenProd": "productos/cougar_minosxt.png",
+      "marca": 22,
+      "tipoprod": 5
+    }
+  },
+  {
+    "model": "Inicio.producto",
+    "pk": 12,
+    "fields": {
+      "nombreProducto": "Logitech G503 KDA",
+      "precioProducto": 45990,
+      "stockProd": 10,
+      "imagenProd": "productos/kda.png",
+      "marca": 41,
+      "tipoprod": 5
+    }
+  },
+  {
+    "model": "Inicio.tipousuario",
+    "pk": 1,
+    "fields": {
+      "nombreTipo": "admin"
+    }
+  },
+  {
+    "model": "Inicio.tipousuario",
+    "pk": 2,
+    "fields": {
+      "nombreTipo": "usuario"
+    }
+  },
+  {
+    "model": "Inicio.usuario",
+    "pk": "admin",
+    "fields": {
+      "contrasennia": "admin",
+      "nombre": "admin",
+      "apellido": "admin",
+      "email": "admin@admin.com",
+      "tipousuario": 1
+    }
+  },
+  {
+    "model": "Inicio.usuario",
+    "pk": "invitado",
+    "fields": {
+      "contrasennia": "invitado",
+      "nombre": "invitado",
+      "apellido": "invitado",
+      "email": "invitado@invitado.com",
+      "tipousuario": 2
+    }
+  },
+  {
+    "model": "Inicio.usuario",
+    "pk": "cheka",
+    "fields": {
+      "contrasennia": "12345",
+      "nombre": "Carlos",
+      "apellido": "Fabres",
+      "email": "carlos@sexologo.com",
+      "tipousuario": 2
+    }
+  },
+  {
+    "model": "Inicio.usuario",
+    "pk": "salas_si",
+    "fields": {
+      "contrasennia": "2222",
+      "nombre": "Salas",
+      "apellido": "Gei",
+      "email": "saasdasd@asdasd.com",
+      "tipousuario": 2
+    }
+  }
+]

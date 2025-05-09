@@ -586,6 +586,39 @@ def ver_clima(request):
     contexto = clima_y_dolar(request)
     contexto["usuario"] = usuario
 
+    # Obtener pronóstico extendido para 5 días (filtrado por 12:00 cada día)
+    api_key = "3aa40bf58c891102b7f62742923f8b68"
+    ciudad = contexto.get("clima", {}).get("ciudad", "Santiago")
+    url_forecast = f"https://api.openweathermap.org/data/2.5/forecast?q={ciudad}&appid={api_key}&units=metric&lang=es"
+
+    try:
+        respuesta_forecast = requests.get(url_forecast, timeout=5)
+        data_forecast = respuesta_forecast.json()
+        pronostico_raw = data_forecast.get('list', [])
+
+        pronostico_filtrado = []
+        fechas_agregadas = set()
+
+        for item in pronostico_raw:
+            fecha_hora = item['dt_txt']
+            if "12:00:00" in fecha_hora:
+                fecha = fecha_hora.split(" ")[0]
+                if fecha not in fechas_agregadas:
+                    dia = {
+                        'fecha': fecha,
+                        'temperatura': round(item['main']['temp']),
+                        'descripcion': item['weather'][0]['description'],
+                        'icon': item['weather'][0]['icon']
+                    }
+                    pronostico_filtrado.append(dia)
+                    fechas_agregadas.add(fecha)
+                    if len(pronostico_filtrado) >= 5:
+                        break
+
+        contexto["pronostico"] = pronostico_filtrado
+    except:
+        contexto["pronostico"] = []
+
     return render(request, 'Inicio/clima.html', contexto)
 
 
