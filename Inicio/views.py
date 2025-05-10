@@ -425,12 +425,12 @@ def iniciar_sesion(request):
                     return redirect('inicio')
             except Usuario.DoesNotExist:
                 messages.error(request, 'El usuario o la contraseña son incorrectos')
-                return redirect('iniciar')
+                return render(request, 'Inicio/inicio_sesion.html')
         else:
             messages.error(request, 'Debe ingresar usuario y contraseña')
-            return redirect('iniciar')
+            return render(request, 'Inicio/inicio_sesion.html')
     else:
-        return redirect('iniciar')
+        return render(request, 'Inicio/inicio_sesion.html')
     
  
 

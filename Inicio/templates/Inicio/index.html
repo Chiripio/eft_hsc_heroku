@@ -12,6 +12,7 @@
 {% endblock imagen %}
 
 {% block contenido %}
+{% with user_actual=usuario.username|default:'anonimo' %}
 <section class="compsyper">
     <div class="container">
         <h1 class="text-break">Acá podrás encontrar lo mejor para poder armar tu setup 🔥</h1>
@@ -21,7 +22,7 @@
             <!-- Micrófonos -->
             <div class="col-xl-4 col-md-6 col-sm-12">
                 <article class="caja">
-                    <a href="{% url 'mostrarMic' usuario.username|default:'anonimo' %}">
+                    <a href="{% url 'mostrarMic' user_actual %}">
                         <img src="{% static 'Inicio/img/img-index/microfono.jpg' %}" alt="microfono gamer" class="img-fluid" id="img">
                     </a>
                     <p class="txtcaja">MICRÓFONOS</p>
@@ -31,7 +32,7 @@
             <!-- Teclados -->
             <div class="col-xl-4 col-md-6 col-sm-12">
                 <article class="caja">
-                    <a href="{% url 'teclados' usuario.username|default:'anonimo' %}">
+                    <a href="{% url 'teclados' user_actual %}">
                         <img src="{% static 'Inicio/img/img-index/teclado.jpg' %}" alt="teclado gamer" class="img-fluid" id="img">
                     </a>
                     <p class="txtcaja">TECLADOS</p>
@@ -41,7 +42,7 @@
             <!-- Mouse -->
             <div class="col-xl-4 col-md-12 col-sm-12">
                 <article class="caja">
-                    <a href="{% url 'mostrarMouse' usuario.username|default:'anonimo' %}">
+                    <a href="{% url 'mostrarMouse' user_actual %}">
                         <img src="{% static 'Inicio/img/img-index/mouse.jpg' %}" alt="mouse gamer" class="img-fluid" id="img">
                     </a>
                     <p class="txtcaja">MOUSE GAMER</p>
@@ -58,7 +59,7 @@
             <!-- Gráficas -->
             <div class="col-xl-4 col-md-6 col-sm-12">
                 <article class="caja">
-                    <a href="{% url 'mostrarGrafica' usuario.username|default:'anonimo' %}">
+                    <a href="{% url 'mostrarGrafica' user_actual %}">
                         <img src="{% static 'Inicio/img/img-index/grafica.png' %}" alt="tarjeta grafica" class="img-fluid" id="img">
                     </a>
                     <p class="txtcaja">TARJETAS GRÁFICAS</p>
@@ -68,7 +69,7 @@
             <!-- Procesadores -->
             <div class="col-xl-4 col-md-6 col-sm-12">
                 <article class="caja">
-                    <a href="{% url 'mostrarProcesador' usuario.username|default:'anonimo' %}">
+                    <a href="{% url 'mostrarProcesador' user_actual %}">
                         <img src="{% static 'Inicio/img/img-index/procesador.jpg' %}" alt="procesador" class="img-fluid" id="img">
                     </a>
                     <p class="txtcaja">PROCESADORES</p>
@@ -78,7 +79,7 @@
             <!-- RAM -->
             <div class="col-xl-4 col-md-12 col-sm-12">
                 <article class="caja">
-                    <a href="{% url 'mostrarRam' usuario.username|default:'anonimo' %}">
+                    <a href="{% url 'mostrarRam' user_actual %}">
                         <img src="{% static 'Inicio/img/img-index/rampc.jpg' %}" alt="memoria RAM" class="img-fluid" id="img">
                     </a>
                     <p class="txtcaja">MEMORIAS</p>
@@ -87,4 +88,5 @@
         </div>
     </div>
 </section>
+{% endwith %}
 {% endblock contenido %}
