@@ -625,8 +625,9 @@ def ver_clima(request):
 from django.contrib import messages
 
 def confirmar_pago(request):
-    if 'usuario' not in request.session:
-        request.session['usuario'] = 'anonimo'
+    if 'usuario' not in request.session or request.session['usuario'] == 'anonimo':
+        messages.error(request, "Debes iniciar sesión para finalizar la compra.")
+        return redirect('iniciar')
 
     carrito = request.session.get('carrito', {})
     if not carrito:
