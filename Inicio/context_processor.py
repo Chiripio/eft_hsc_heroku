@@ -1,4 +1,5 @@
 import requests
+from .models import Usuario
 
 def total_carrito(request):
     total = 0
@@ -8,9 +9,17 @@ def total_carrito(request):
                 total += int(value["acumulado"])
     return {"total_carrito": total}
 
-## clima 
+## clima + dolar + usuario (global)
 def clima_y_dolar(request):
-    contexto = {'clima': None, 'dolar': None}
+    usuario = None
+    if 'usuario' in request.session:
+        try:
+            usuario = Usuario.objects.get(username=request.session['usuario'])
+        except Usuario.DoesNotExist:
+            usuario = None
+
+    contexto = {'clima': None, 'dolar': None, 'usuario': usuario}
+
     try:
         # Obtener IP pública (evita IP localhost)
         ip = request.META.get('REMOTE_ADDR', '')
