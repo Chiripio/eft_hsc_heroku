@@ -645,9 +645,6 @@ def confirmar_pago(request):
 
 
 # -------------------- CERRAR SESION --------------------
-from django.contrib.auth import logout
-
 def cerrar_sesion(request):
-    logout(request)
-    request.session.flush()  # Limpia completamente la sesión si existe clave 'usuario'
+    request.session.flush()  # Borra toda la sesión, incluyendo 'usuario' y 'carrito'
     return redirect('inicio')
