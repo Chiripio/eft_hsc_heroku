@@ -28,6 +28,10 @@ SECRET_KEY = 'django-insecure-4u7p!0f@wyk991sme@u6m#+ua2w3g!x*h47#ubt3&8v5d!q_$l
 DEBUG = True
 
 ALLOWED_HOSTS = ['hsc-etf-demo-bc86b4cdeae4.herokuapp.com']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
 
 
 # Application definition
