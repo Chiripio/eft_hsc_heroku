@@ -3,10 +3,12 @@ from .models import Usuario
 
 def total_carrito(request):
     total = 0
-    if request.user.is_authenticated:
-        if "carrito" in request.session.keys():
-            for key, value in request.session["carrito"].items():
-                total += int(value["acumulado"])
+    if "carrito" in request.session:
+        for key, value in request.session["carrito"].items():
+            try:
+                total += int(value.get("acumulado", 0))
+            except:
+                pass
     return {"total_carrito": total}
 
 ## clima + dolar + usuario (global)
