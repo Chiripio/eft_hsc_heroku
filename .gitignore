@@ -1,38 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+*.pot
+*.pyc
 
 # Entornos virtuales
 venv/
-.env
+.env/
+*.env
 
-# Archivos de base de datos
-*.sqlite3
+# Archivos temporales y del sistema
+.DS_Store
+Thumbs.db
 
-# Archivos de configuración de usuario
-*.pyc
-__pycache__/
-*.log
-
-# Archivos grandes (como el wallet)
-oracle_wallet/
+# Archivos de configuración de conexión sensibles (como Oracle Wallet)
+wallet/
 *.zip
-*.rar
 *.7z
-*.tar
-*.gz
 
-# Archivos mayores a 100 MB no se subirán aunque no estén aquí (Git lo bloquea)
+# Static y media generados
+staticfiles/
+media/
 
-wallet/lib/libociei.dylib
-venv/
-__pycache__/
-*.sqlite3
-*.pyc
-.DS_Store
-wallet/
-*.log
-venv/
-__pycache__/
-*.sqlite3
-*.pyc
-.DS_Store
-wallet/
-*.log
+# Archivos de subida pesada
+*.mp4
+*.mov
+
+# VSCode
+.vscode/
+
+# Heroku
+Procfile
