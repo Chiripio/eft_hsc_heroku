@@ -588,7 +588,8 @@ def ver_clima(request):
 
     # Obtener pronóstico extendido para 5 días (filtrado por 12:00 cada día)
     api_key = "3aa40bf58c891102b7f62742923f8b68"
-    ciudad = contexto.get("clima", {}).get("ciudad", "Santiago") if contexto else "Santiago"
+    clima_data = contexto.get("clima")
+    ciudad = clima_data.get("ciudad", "Santiago") if clima_data else "Santiago"
     url_forecast = f"https://api.openweathermap.org/data/2.5/forecast?q={ciudad}&appid={api_key}&units=metric&lang=es"
 
     try:
@@ -616,7 +617,8 @@ def ver_clima(request):
                         break
 
         contexto["pronostico"] = pronostico_filtrado
-    except:
+    except Exception as e:
+        print(f"[ERROR al obtener pronóstico]: {e}")
         contexto["pronostico"] = []
 
     return render(request, 'Inicio/clima.html', contexto)

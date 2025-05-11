@@ -45,7 +45,13 @@ def clima_y_dolar(request):
         dolar_data = requests.get("https://mindicador.cl/api", timeout=5).json()
         contexto['dolar'] = round(dolar_data['dolar']['valor'])
 
-    except Exception:
-        pass  # Si hay error, contexto queda con valores None
+    except Exception as e:
+        print(f"[ERROR contexto clima_y_dolar]: {e}")
+        contexto['clima'] = {
+            'ciudad': 'Santiago',
+            'temperatura': 'N/D',
+            'descripcion': 'No disponible'
+        }
+        contexto['dolar'] = 'N/D'
 
     return contexto
