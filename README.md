@@ -1,175 +1,83 @@
-# HSC - Proyecto Semana 8 (PGY3221 - Programación Web)
+# HSC - Evaluación Final Transversal (PGY3221)
 
-Este es el proyecto final correspondiente a la **Semana 8** del ramo **Programación Web** del estudiante **Eduardo Guerrero Soto**.
+Proyecto web desarrollado como parte de la **Evaluación Final Transversal** del curso **Programación Web (PGY3221)**. Esta aplicación integra las experiencias previas, incorpora seguridad, API propia, consumo de servicios externos, y fue desplegada exitosamente en Heroku.
 
-## 📌 Descripción
+---
 
-El sitio web HSC permite a usuarios navegar productos tecnológicos (mouse, teclados, RAM, GPU, etc.), agregar al carrito, ver perfil, y como novedad de esta semana:
+## 🌐 Enlace a la aplicación desplegada
+👉 [https://hsc-etf-demo-bc86b4cdeae4.herokuapp.com/](https://hsc-etf-demo-bc86b4cdeae4.herokuapp.com/)
 
-- Se ha implementado una **API REST protegida con token**.
-- Se consume un **servicio web externo (OpenWeatherMap)** para mostrar el clima en tiempo real.
-- El frontend está completamente funcional, conectado a Oracle y animado con estilos personalizados.
+---
 
-## 🛠️ Instalación y uso
+## 🎥 Enlace al video de presentación
+👉 [Video en Google Drive](https://drive.google.com/drive/folder/XXXXXXXXXX)  
+*(Reemplazar con el enlace real compartido desde tu cuenta institucional)*
 
-1. Clonar el repositorio:
+---
 
-```bash
-git clone https://github.com/Chiripio/Hsc_Semana8.git
-cd Hsc_Semana8
+## 🛠️ Tecnologías utilizadas
+
+- **Frontend**: HTML5, CSS3, Bootstrap 5, JavaScript
+- **Backend**: Django 4.2, Django REST Framework
+- **Base de Datos**: Oracle (conexión mediante `oracledb`)
+- **APIs externas**:  
+  - [OpenWeather API](https://openweathermap.org/api) para clima.  
+  - [Mindicador.cl](https://mindicador.cl) para el valor del dólar.
+
+---
+
+## ✅ Funcionalidades implementadas
+
+- Carrito de compras con persistencia en sesión
+- Seguridad: autenticación por token y control de roles
+- Gestión de productos, categorías y ventas
+- Panel de administración (Django admin)
+- API propia RESTful:  
+  - `/api/productos/`  
+  - `/api/ventas/<usuario>/`  
+  - `/api/categorias/`
+- Consumo de 2 servicios externos (clima + dólar)
+- Interfaz adaptable a 3 tamaños de pantalla
+
+---
+
+## 📂 Estructura del proyecto
+
+- `/Inicio/` — App principal con vistas, templates y contexto dinámico.
+- `/api_hsc/` — App que contiene la API REST propia.
+- `/media/` — Archivos multimedia (no incluidos en el repositorio).
+- `ScriptFinal.sql` — Script de creación e inserción para la base de datos en Oracle.
+
+---
+
+## 🧪 Instrucciones para ejecución local
+
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/Chiripio/eft_hsc_heroku.git
+   cd eft_hsc_heroku
 
 
+	Crea y activa un entorno virtual:
 
-	2.	Crear entorno virtual y activar:
 
 python3 -m venv venv
 source venv/bin/activate
 
-	3.	Instalar dependencias:
+	Instala las dependencias:
 
+ 
 pip install -r requirements.txt
 
-
-	4.	Configurar la conexión a Oracle (usando wallet).
-	5.	Correr el servidor:
-
-python manage.py runserver
+Configura las variables necesarias (por ejemplo, acceso Oracle si es necesario).
 
 
- Acceso al panel de administración
-	•	Usuario: admin
-	•	Contraseña: DUoc2025
+	Ejecuta el servidor:
 
-Entrar en http://127.0.0.1:8000/admin
+ python manage.py runserver
 
-🧩 API REST (Django REST Framework)
+Exclusiones importantes
+	•	No se incluyen archivos pesados como wallet/, .env, archivos .mp4, ni .sqlite3.
+	•	.gitignore correctamente configurado para mantener el repositorio liviano.
 
-Endpoints disponibles:
-	•	GET /api/productos/ → Lista de productos
-	•	GET /api/ventas/<usuario>/ → Ventas por usuario
-	•	GET /api/clima/ → Clima en tiempo real por IP (OpenWeather)
-
-Token de autenticación
-	•	Token generado por usuario registrado (ver en admin).
-	•	Agregar a Postman como Header:
-
-
-Authorization: Token <tu_token>
-
-
-GET http://127.0.0.1:8000/api/productos/
-Authorization: Token TU_TOKEN
-
-
-
-Clima animado
-
-El clima se muestra dinámicamente en:
-	•	Parte superior derecha del index.html
-	•	Página /clima/ con animaciones y fondo que cambia según el tiempo actual detectado por IP.
-
-🧪 Revisión completa
-
-✔️ Conexión Oracle funcionando
-✔️ API protegida por Token
-✔️ Consumo de API externa (OpenWeather)
-✔️ Vistas enlazadas desde el frontend
-✔️ Proyecto completo subido a GitHub
-
-
-
-📌 Instrucciones del Proyecto HSC
-
-⚙️ Requisitos del sistema
-
-- Python 3.10+
-- Oracle Instant Client y `oracledb`
-- Django 4.2+
-- Bootstrap 5
-- Cuenta Oracle con esquema cargado (`ScriptFinal.sql` ejecutado)
-
-🚀 Cómo ejecutar el proyecto
-
-1. Clona este repositorio o descarga el proyecto:
-   git clone https://github.com/Chiripio/Hsc_Semana8.git
-
-2. Crea y activa un entorno virtual:
-   python3 -m venv venv
-   source venv/bin/activate  # En Windows: venv\Scripts\activate
-
-3. Instala las dependencias:
-   pip install -r requirements.txt
-
-4. Asegúrate de tener el archivo `wallet` de Oracle si estás usando autenticación con wallet. Colócalo en `/oracle_wallet/` y configura `settings.py` correctamente.
-
-5. Ejecuta el servidor:
-   python manage.py runserver
-
-🔑 Credenciales de ejemplo
-
-- Usuario administrador Django:
-  - Usuario: admin
-  - Contraseña: DUoc2025
-
-- Usuario registrado (app):
-  - Usuario: usuario1
-  - Contraseña: 123
-
-🔗 Endpoints principales
-
-- Inicio: /
-- Carrito: /carrito/usuario/
-- API Clima: /api/clima/
-- API Ventas: /api/ventas/<usuario>/
-- API Productos: /api/productos/
-
-🗂️ Notas adicionales
-
-- Al iniciar sesión, se redirige según el tipo de usuario.
-- Si el usuario no está autenticado, se registra como `anonimo` en el carrito.
-- El botón "Comprar" simula un pago y limpia el carrito.
-- El clima y el dólar se cargan automáticamente usando APIs públicas.
-
-# HSC Componentes - Proyecto Semana 8 (PGY3221)
-
-Este proyecto corresponde a la **Semana 8 del curso Programación Web (PGY3221)** y presenta una aplicación funcional basada en Django + Oracle. A continuación, se detallan los principales avances implementados:
-
----
-
-## ✅ Funcionalidades Implementadas
-
-- 🔄 **Carrito de compras funcional** con sesión por usuario (anónimo o registrado).
-- 🔐 **Manejo de sesión**:
-  - Iniciar sesión con cuenta creada en Oracle.
-  - Cierre de sesión visible y funcional.
-- 🌤️ **Consumo de API externa (OpenWeather)** para mostrar clima según IP del visitante.
-- 💲 **Consumo de API externa (mindicador.cl)** para obtener el valor actualizado del dólar.
-- 🧾 **Simulación de pago**:
-  - Página `confirmar_pago.html` muestra total.
-  - Limpieza de carrito tras la confirmación.
-- 🧩 Integración total con Oracle como base de datos (vía oracledb).
-
----
-
-## 📁 Estructura destacada
-
-- `Inicio/views.py`: lógica del carrito, sesión, clima y confirmación de pago.
-- `Inicio/templates/Inicio/`: vistas HTML funcionales.
-- `static/js/carrito.js`: control JS del carrito.
-- `media/productos/`: imágenes usadas en la tienda.
-
----
-
-## 💾 Base de datos
-
-- Oracle con tablas ya cargadas mediante `proyecto1.sql`.
-- El login y el manejo de usuarios se realiza con los datos del modelo `Usuario`.
-
----
-
-## 🚀 Cómo iniciar
-
-1. Asegúrate de tener configurada la conexión Oracle.
-2. Activa el entorno virtual y ejecuta:
-   ```bash
-   python manage.py runserver
+ 
